@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+    server:
+        image: httpd:2.4
+        ports:
+        - 80:80
+        volumes:
+        - ./:/usr/local/apache2/htdocs
+    client:
+        build: client/
+        command: node ./client.js
+        network_mode: host
+        depends_on:
+            - server
